@@ -3,6 +3,7 @@ package itvdn.todolist.services;
 import itvdn.todolist.domain.User;
 import itvdn.todolist.services.interfaces.IUserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Service;
 
@@ -23,7 +24,7 @@ public class UserService implements IUserService {
 
     @Override
     public int createUser(User user) {
-        String query = "INSERT INT Users VALUES(" + user.getId() + ",'"
+        String query = "INSERT INTO Users VALUES(" + user.getId() + ",'"
                 + user.getEmail() + "','" + user.getPassword() + "')";
         int result = jdbcTemplate.update(query);
         return result;
@@ -31,17 +32,23 @@ public class UserService implements IUserService {
 
     @Override
     public User getUser(long id) {
-        return null;
+        String query = "SELECT * FROM Users WHERE Id=?";
+        User result = jdbcTemplate.queryForObject(query, new Object[]{id}, new BeanPropertyRowMapper<>(User.class));
+        return result;
     }
 
     @Override
-    public int updateUser(User user, long id) {
-        return 0;
+    public int updateUser(User updatedUser, long id) {
+        String query = "UPDATE Users SET Email='" + updatedUser.getEmail() + "', password='"
+                + updatedUser.getPassword() + "' WHERE id=" + id;
+        int result = jdbcTemplate.update(query);
+        return result;
     }
-
 
     @Override
     public int deleteUser(long id) {
-        return 0;
+        String query = "DELETE FROM Users WHERE id=" + id;
+        int result = jdbcTemplate.update(query);
+        return result;
     }
 }
