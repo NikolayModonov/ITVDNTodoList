@@ -23,7 +23,10 @@ public class UserService implements IUserService {
 
     @Override
     public int createUser(User user) {
-        return 0;
+        String query = "INSERT INT Users VALUES(" + user.getId() + ",'"
+                + user.getEmail() + "','" + user.getPassword() + "')";
+        int result = jdbcTemplate.update(query);
+        return result;
     }
 
     @Override
