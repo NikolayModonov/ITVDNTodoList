@@ -3,8 +3,6 @@ package itvdn.todolist.services;
 import itvdn.todolist.domain.User;
 import itvdn.todolist.services.interfaces.IUserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.jdbc.core.BeanPropertyRowMapper;
-import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -12,7 +10,6 @@ public class UserService implements IUserService {
 
     @Autowired
     public UserService() {
-
     }
 
     @Override

@@ -536,3 +536,7 @@ The connection was not closed by the application and is garbage collected [90018
 	at org.h2.message.DbException.getJdbcSQLException(DbException.java:678)
 	at org.h2.message.DbException.getJdbcSQLException(DbException.java:477)
 	... 13 more
+2023-03-06 02:26:53 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Таблица "_USER" не найдена
+Table "_USER" not found; SQL statement:
+DROP TABLE _USER [42102-214]
